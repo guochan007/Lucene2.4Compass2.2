@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<compass-core-config xmlns="http://www.compass-project.org/schema/core-config"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.compass-project.org/schema/core-config
+	http://www.compass-project.org/schema/compass-core-config-2.2.xsd">
+
+	<compass name="default">
+
+		<!-- 配置索引库的存储目录 -->
+		<connection>
+			<file path="d:\luceneIndex" />
+		</connection>
+		
+		<cache>
+			<firstLevel type="org.compass.core.cache.first.NullFirstLevelCache" />
+		</cache>
+		
+		<mappings>
+			<class name="com.pojo.Students" />
+		</mappings>
+		
+		<settings>
+			<!-- setting元素就像于property元素 -->
+			<setting name="compass.engine.analyzer.default.type" 
+				value="net.paoding.analysis.analyzer.PaodingAnalyzer"/>	
+			<!-- 配置高亮
+			<setting name="compass.engine.highlighter.default.formatter.simple.pre" 
+				value="<font color='red'><b>" />
+			<setting name="compass.engine.highlighter.default.formatter.simple.post"
+				value="</b></font>" />
+				 -->	
+		</settings>
+		
+		
+	</compass>
+
+</compass-core-config>

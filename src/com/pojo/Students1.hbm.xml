@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.pojo">
+	<class name="com.pojo.Students" table="students">
+		<!-- <id name="sid" type="int">
+		-->
+		<id name="sid" type="java.lang.Integer">
+			<column name="SID"></column>
+			<generator class="assigned"></generator>
+		</id>
+		<property name="sname" type="java.lang.String">
+			<column name="SNAME" />
+		</property>
+		<property name="gender" type="java.lang.String">
+			<column name="GENDER" />
+		</property>
+		<property name="birthday" type="java.util.Date">
+		<!-- 这里的type使用的是java的数据类型，也可以使用hibernate的数据类型，比如这个就可以直接写个 type="date" -->
+			<column name="BIRTHDAY" />
+		</property>
+		<!--  
+		<property name="address" type="java.lang.String">
+			<column name="ADDRESS" />
+		</property>
+		-->
+		<component name="address" class="Address">
+			<property name="postcode" column="postcode"/>
+			<property name="phone" column="phone"/>
+			<property name="address" column="address"/>
+		</component>
+		
+	</class>
+</hibernate-mapping>
