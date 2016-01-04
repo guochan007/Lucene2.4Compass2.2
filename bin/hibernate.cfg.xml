@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">123456</property>
+		<property name="connection.url">jdbc:mysql:///test</property>
+		<!-- 等价于  -->
+		<!--
+		<property name="connection.url">jdbc:mysql://localhost:3306/test</property>
+		-->
+		
+		<!-- 配置dialect方言 明确告诉hibernate连接的是哪个数据库 -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- 显示sql语句 -->
+		<property name="show_sql">true</property>
+		<!-- 让hibernate自动创建表 create表示如果没有该表 则创建   插入的新的记录会覆盖旧的记录 根本原因是create每次要删表然后再建表-->
+		<!-- 没表就建表  有表的话看看表结构  要是有变化的话创建新表  没变换的话继续插入记录 -->
+		<property name="hbm2ddl.auto">update</property>
+
+		<property name="current_session_context_class">thread</property>		
+
+		<property name="compass.engine.connection">d:\luceneIndex</property> 
+		
+    
+    	<!-- 
+		<mapping resource="com/pojo/Students.hbm.xml" />
+		-->
+		<mapping class="com.pojo.Students" />
+		
+		<!-- 监听器 -->
+	   <event type="post-update">
+	       <listener class="org.compass.gps.device.hibernate.embedded.CompassEventListener"/>
+	   </event>
+	   <event type="post-insert">
+	       <listener class="org.compass.gps.device.hibernate.embedded.CompassEventListener"   />
+	   </event>
+	   <event type="post-delete">
+	       <listener class="org.compass.gps.device.hibernate.embedded.CompassEventListener"/>
+	   </event>
+	   
+	   <event type="post-collection-recreate">
+	       <listener class="org.compass.gps.device.hibernate.embedded.CompassEventListener"/>
+	   </event>
+	   <event type="post-collection-remove">
+	       <listener class="org.compass.gps.device.hibernate.embedded.CompassEventListener"/>
+	   </event>
+	   <event type="post-collection-update">
+	       <listener class="org.compass.gps.device.hibernate.embedded.CompassEventListener"/>
+	   </event> 
+		
+ 
+	</session-factory>
+</hibernate-configuration>
